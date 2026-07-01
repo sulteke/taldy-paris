@@ -48,7 +48,7 @@ export const site = {
 
   // ---- Placeholders: confirm with client before launch ----
   hours: "{{HOURS}}", // e.g. "Ежедневно 10:00–24:00" — not in source
-  geo: { lat: "{{LAT}}", lng: "{{LNG}}" }, // needs geocoding
+  geo: { lat: 45.013419, lng: 78.404325 },
   siteUrl: "https://taldy-paris.kz", // {{SITE_URL}} — replace with real domain
 } as const;
 

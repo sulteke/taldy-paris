@@ -4,25 +4,14 @@ import { ExternalLink } from "lucide-react";
 import { site } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
 
-/**
- * Live map of the real address. Uses Google Maps' keyless embed (address query)
- * so the pin points at the actual street address rather than a placeholder.
- * The 2ГИС (primary in Kazakhstan) and Google "open" links sit below. Once exact
- * GPS coordinates / a 2GIS firm id are provided, swap the embed src for those.
- */
-const query = `${site.name}, ${site.address.full}`;
+const { lat, lng } = site.geo;
 
-export const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  query
-)}`;
+export const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
 
-export const gisUrl = `https://2gis.kz/taldykorgan/search/${encodeURIComponent(
-  `${site.name} ${site.address.street}`
-)}`;
+export const gisUrl =
+  "https://2gis.kz/almaty/firm/70000001080648787";
 
-const embedSrc = `https://www.google.com/maps?q=${encodeURIComponent(
-  query
-)}&z=16&output=embed`;
+const embedSrc = `https://www.google.com/maps?q=${lat},${lng}&z=17&output=embed`;
 
 export function MapEmbed({ className = "" }: { className?: string }) {
   const { t } = useI18n();
