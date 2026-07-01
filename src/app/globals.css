@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --header-h: 72px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream-50 text-charcoal-900 font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.625;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif text-teal-900;
+    text-wrap: balance;
+  }
+
+  /* Visible, consistent keyboard focus ring on every interactive element */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  [tabindex]:focus-visible {
+    @apply outline-none ring-2 ring-teal-600 ring-offset-2 ring-offset-cream-50 rounded-sm;
+  }
+
+  /* Anchored category sections clear the sticky header + tab bar */
+  [id] {
+    scroll-margin-top: calc(var(--header-h) + 64px);
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-container px-4 md:px-8 lg:px-16;
+  }
+
+  /* Dotted price leader — an authentic nod to the printed menu */
+  .leader {
+    @apply flex items-baseline gap-2;
+  }
+  .leader__dots {
+    @apply flex-1 translate-y-[-3px] border-b border-dotted border-charcoal-900/25;
+  }
+
+  .link-underline {
+    @apply relative font-medium text-teal-900 transition-colors hover:text-teal-600;
+  }
+  .link-underline::after {
+    content: "";
+    @apply absolute -bottom-0.5 left-0 h-px w-0 bg-gold-600 transition-all duration-200;
+  }
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    @apply w-full;
+  }
+
+  .section {
+    @apply py-16 lg:py-24;
+  }
+}
+
+@layer utilities {
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Continuous auto-scrolling marquee (signature dishes) */
+  @keyframes tp-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-marquee {
+    animation: tp-marquee var(--marquee-duration, 40s) linear infinite;
+  }
+  /* Hide scrollbar on the horizontal category tab strip */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Honour users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
