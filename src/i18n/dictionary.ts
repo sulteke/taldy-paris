@@ -230,6 +230,22 @@ export const dict = {
       en: "Kazakh classics, pasta and pizzas, steaks, fish, soups and breakfasts — a large menu for any occasion.",
     },
     cuisCta: { kk: "Мәзірді ашу", ru: "Открыть меню", en: "Open the menu" },
+
+    statsEyebrow: { kk: "Сандар", ru: "В цифрах", en: "In numbers" },
+    statsTitle: { kk: "Taldy-Paris сандармен", ru: "Taldy-Paris в цифрах", en: "Taldy-Paris in numbers" },
+    statDishes: { kk: "тағам мәзірде", ru: "блюд в меню", en: "dishes on the menu" },
+    statCategories: { kk: "санат", ru: "категорий", en: "categories" },
+    statGuests: { kk: "адамдық сеттер", ru: "персон в банкетных сетах", en: "guests per banquet set" },
+    statService: { kk: "қызмет көрсету", ru: "обслуживание", en: "service charge" },
+
+    reviewsEyebrow: { kk: "Пікірлер", ru: "Отзывы", en: "Reviews" },
+    reviewsTitle: { kk: "Қонақтар не айтады", ru: "Что говорят гости", en: "What guests say" },
+    reviewsIntro: {
+      kk: "2ГІС және Instagram-дағы нақты пікірлер.",
+      ru: "Реальные отзывы из 2ГИС и Instagram.",
+      en: "Real reviews from 2GIS and Instagram.",
+    },
+    reviewSource: { kk: "2ГІС пікірі", ru: "Отзыв из 2ГИС", en: "Review from 2GIS" },
   },
 
   gallery: {
