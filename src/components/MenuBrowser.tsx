@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Search, X } from "lucide-react";
-import { menu, type MenuCategory } from "@/data/menu";
+import { menu, groupTitle, type MenuCategory } from "@/data/menu";
 import { MenuItemRow } from "./MenuItemRow";
 import { SectionDivider } from "./SectionDivider";
 import { useI18n } from "@/i18n/provider";
@@ -15,7 +15,9 @@ function filterMenu(query: string): MenuCategory[] {
       const groups = cat.groups
         .map((g) => ({
           ...g,
-          items: g.items.filter((i) => i.name.toLowerCase().includes(q)),
+          items: g.items.filter((i) =>
+            [i.name, i.kk, i.en].some((n) => n.toLowerCase().includes(q))
+          ),
         }))
         .filter((g) => g.items.length > 0);
       return { ...cat, groups };
@@ -166,7 +168,7 @@ export function MenuBrowser() {
                   >
                     {group.title && (
                       <h3 className="mb-1 mt-6 text-base font-semibold uppercase tracking-wide text-terracotta-600 first:mt-0">
-                        {group.title}
+                        {groupTitle(group, lang)}
                       </h3>
                     )}
                     <ul
@@ -178,11 +180,7 @@ export function MenuBrowser() {
                     >
                       {group.items.map((item, ii) => (
                         <li key={ii}>
-                          <MenuItemRow
-                            name={item.name}
-                            price={item.price}
-                            categoryId={cat.id}
-                          />
+                          <MenuItemRow item={item} categoryId={cat.id} />
                         </li>
                       ))}
                     </ul>

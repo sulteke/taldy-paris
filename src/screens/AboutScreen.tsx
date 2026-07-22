@@ -10,7 +10,6 @@ import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/Button";
 import { CTABanner } from "@/components/CTABanner";
 import { interiorFeatures } from "@/data/amenities";
-import { site } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
 
 const stats = [
@@ -75,7 +74,7 @@ export function AboutScreen() {
       <section className="section">
         <div className="container-page">
           <Reveal>
-            <PullQuote cite={t("about.quoteCite")}>{site.welcome}</PullQuote>
+            <PullQuote cite={t("about.quoteCite")}>{t("about.welcome")}</PullQuote>
           </Reveal>
         </div>
       </section>

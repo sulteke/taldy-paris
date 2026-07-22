@@ -166,9 +166,9 @@ export const dict = {
     wishes: { kk: "Тілектер", ru: "Пожелания", en: "Wishes" },
     optional: { kk: "міндетті емес", ru: "необязательно", en: "optional" },
     wishesPh: {
-      kk: "Мысалы: терезе жанындағы үстел, кальян, торт…",
-      ru: "Например: столик у окна, кальян, торт…",
-      en: "e.g. table by the window, hookah, cake…",
+      kk: "Мысалы: терезе жанындағы үстел, торт…",
+      ru: "Например: столик у окна, торт…",
+      en: "e.g. table by the window, cake…",
     },
     includeCart: {
       kk: "Себеттегі тапсырысымды қосу",
@@ -203,6 +203,23 @@ export const dict = {
     },
     heroImage: { kk: "Taldy-Paris интерьері", ru: "Интерьер Taldy-Paris", en: "Taldy-Paris interior" },
     quoteCite: { kk: "Taldy-Paris командасы", ru: "Команда Taldy-Paris", en: "The Taldy-Paris team" },
+    welcome: {
+      kk:
+        "Қадірлі қонақтар! Сіздерді «Taldy Paris» кафемізде қарсы алуға қуаныштымыз. " +
+        "Біз — өз ісін шын сүйетін кәсіби мамандардың отбасымыз. Кафеміздің басты мақсаты — " +
+        "әрбір қонаққа деген зейінді әрі мейірімді қарым-қатынас! Сіздерге көңілді демалыс " +
+        "пен дәмді ас тілейміз!",
+      ru:
+        "Дорогие гости! Мы рады приветствовать Вас в нашем кафе – «Taldy Paris». " +
+        "Мы семья профессионалов, любящие свое дело. Главная задача нашего кафе - " +
+        "это внимательное заботливое отношение к каждому гостю! Желаем Вам приятного " +
+        "отдыха и приятного аппетита!",
+      en:
+        "Dear guests! We are delighted to welcome you to our café «Taldy Paris». " +
+        "We are a family of professionals who truly love what we do. The main goal of our " +
+        "café is attentive and caring service for every guest! We wish you a pleasant " +
+        "time and a hearty appetite!",
+    },
     storyEyebrow: { kk: "Біздің тарих", ru: "Наша история", en: "Our story" },
     storyTitle: { kk: "Кәсіби мамандар отбасы", ru: "Семья профессионалов", en: "A family of professionals" },
     storyP1: {
@@ -354,6 +371,8 @@ export const dict = {
       en: "Your cart is empty. Add dishes from the menu.",
     },
     total: { kk: "Барлығы", ru: "Итого", en: "Total" },
+    subtotal: { kk: "Тағамдар сомасы", ru: "Сумма блюд", en: "Subtotal" },
+    service: { kk: "Қызмет көрсету", ru: "Обслуживание", en: "Service charge" },
     clear: { kk: "Тазалау", ru: "Очистить", en: "Clear" },
     checkout: { kk: "WhatsApp арқылы рәсімдеу", ru: "Оформить в WhatsApp", en: "Checkout via WhatsApp" },
     remove: { kk: "Жою", ru: "Удалить", en: "Remove" },

@@ -7,16 +7,19 @@ import { waLink, waMessages } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
 
 /**
- * Banquet set-menu package card. Splits the verbatim item name into a headline
- * and the parenthetical "what's included" detail (text is preserved exactly).
+ * Banquet set-menu package card. `name` is the localized display name (split
+ * into a headline + parenthetical "what's included" detail). `orderName` is the
+ * canonical Russian name sent to the kitchen via WhatsApp.
  * `featured` renders a gold-bordered emphasis variant.
  */
 export function PackageCard({
   name,
+  orderName,
   price,
   featured = false,
 }: {
   name: string;
+  orderName: string;
   price: string;
   featured?: boolean;
 }) {
@@ -56,7 +59,7 @@ export function PackageCard({
         </div>
         <Button
           href={waLink(
-            `${waMessages.banquet} Интересует сет: «${title}».`
+            `${waMessages.banquet} Интересует сет: «${orderName}».`
           )}
           external
           variant="outline"

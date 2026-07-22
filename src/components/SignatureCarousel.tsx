@@ -1,7 +1,7 @@
 "use client";
 
 import { DishCard } from "./DishCard";
-import { signatureDishes, type MenuItem } from "@/data/menu";
+import { signatureDishes, dishName, type MenuItem } from "@/data/menu";
 import { useI18n } from "@/i18n/provider";
 import type { CSSProperties } from "react";
 
@@ -24,7 +24,7 @@ export function SignatureCarousel({
   fadeFrom?: string;
   label?: string;
 }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const track = [...items, ...items];
   const style = {
     "--marquee-duration": `${Math.max(items.length, 6) * 6}s`,
@@ -50,7 +50,7 @@ export function SignatureCarousel({
             className="w-[220px] shrink-0 sm:w-[260px]"
             aria-hidden={i >= items.length}
           >
-            <DishCard name={dish.name} price={dish.price} badge={cardBadge} />
+            <DishCard name={dishName(dish, lang)} price={dish.price} badge={cardBadge} />
           </li>
         ))}
       </ul>

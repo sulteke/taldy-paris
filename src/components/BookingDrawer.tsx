@@ -6,7 +6,7 @@ import { useBooking } from "@/booking/provider";
 import { useCart, formatTenge } from "@/cart/provider";
 import { useI18n } from "@/i18n/provider";
 import { WhatsAppIcon } from "./icons";
-import { site, waLink } from "@/data/site";
+import { waLink } from "@/data/site";
 
 /**
  * Global booking drawer. Reservation is the primary flow (name, phone, date,
@@ -16,7 +16,7 @@ import { site, waLink } from "@/data/site";
 export function BookingDrawer() {
   const { open, closeBooking } = useBooking();
   const { t } = useI18n();
-  const { lines, count, total, inc, dec, remove } = useCart();
+  const { lines, count, subtotal, service, total, servicePercent, inc, dec, remove } = useCart();
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -75,7 +75,9 @@ export function BookingDrawer() {
         "",
         `${t("cart.summaryTitle")}:`,
         lineText,
-        `${t("cart.total")}: ${formatTenge(total)} (+ ${site.serviceChargePercent}%)`
+        `${t("cart.subtotal")}: ${formatTenge(subtotal)}`,
+        `${t("cart.service")} (${servicePercent}%): ${formatTenge(service)}`,
+        `${t("cart.total")}: ${formatTenge(total)}`
       );
     }
 
@@ -234,9 +236,21 @@ export function BookingDrawer() {
         {/* Footer */}
         <div className="border-t border-teal-900/10 bg-white px-5 py-4">
           {attachCart && (
-            <div className="mb-3 flex items-center justify-between text-sm">
-              <span className="text-charcoal-900/60">{t("cart.total")}</span>
-              <span className="text-lg font-bold tabular text-teal-900">{formatTenge(total)}</span>
+            <div className="mb-3 flex flex-col gap-1 text-sm">
+              <div className="flex items-center justify-between text-charcoal-900/60">
+                <span>{t("cart.subtotal")}</span>
+                <span className="tabular">{formatTenge(subtotal)}</span>
+              </div>
+              <div className="flex items-center justify-between text-charcoal-900/60">
+                <span>
+                  {t("cart.service")} ({servicePercent}%)
+                </span>
+                <span className="tabular">{formatTenge(service)}</span>
+              </div>
+              <div className="mt-1 flex items-center justify-between border-t border-teal-900/10 pt-2">
+                <span className="font-medium text-charcoal-900">{t("cart.total")}</span>
+                <span className="text-lg font-bold tabular text-teal-900">{formatTenge(total)}</span>
+              </div>
             </div>
           )}
           <button

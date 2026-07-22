@@ -4,27 +4,28 @@ import { Plus, Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useCart } from "@/cart/provider";
 import { useI18n } from "@/i18n/provider";
+import { dishName, type MenuItem } from "@/data/menu";
 
 /**
  * A single menu line: name + optional muted detail + dotted leader + price + add.
- * The verbatim source name is split only for styling — a trailing "(...)" is
- * shown muted as an ingredient/portion note. name + note === original exactly.
+ * The display name is localized to the current language; the canonical Russian
+ * name is kept as the stable cart id + kitchen order. A trailing "(...)" is
+ * shown muted as an ingredient/portion note.
  */
 export function MenuItemRow({
-  name,
-  price,
+  item,
   categoryId,
 }: {
-  name: string;
-  price: string;
+  item: MenuItem;
   categoryId: string;
 }) {
   const { add } = useCart();
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [added, setAdded] = useState(false);
 
-  const match = name.match(/^(.*?)\s*\(([^()]*)\)\s*$/);
-  const main = match ? match[1] : name;
+  const display = dishName(item, lang);
+  const match = display.match(/^(.*?)\s*\(([^()]*)\)\s*$/);
+  const main = match ? match[1] : display;
   const note = match ? match[2] : null;
 
   useEffect(() => {
@@ -41,12 +42,12 @@ export function MenuItemRow({
       </div>
       <span className="leader__dots" aria-hidden="true" />
       <span className="shrink-0 text-[15px] font-semibold tabular text-teal-900">
-        {price}
+        {item.price}
       </span>
       <button
         type="button"
         onClick={() => {
-          add({ id: `${categoryId}:${name}`, name, price });
+          add({ id: `${categoryId}:${item.name}`, name: item.name, price: item.price });
           setAdded(true);
         }}
         aria-label={`${t("menu.add")}: ${main}`}

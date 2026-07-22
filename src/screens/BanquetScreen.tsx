@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { PackageCard } from "@/components/PackageCard";
 import { WhatsAppBar } from "@/components/WhatsAppBar";
 import { CTABanner } from "@/components/CTABanner";
-import { banquetSets } from "@/data/menu";
+import { banquetSets, dishName } from "@/data/menu";
 import { waLink, waMessages } from "@/data/site";
 import { useI18n } from "@/i18n/provider";
 
@@ -20,7 +20,7 @@ const reasons: { key: string; icon: LucideIcon }[] = [
 ];
 
 export function BanquetScreen() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   return (
     <>
@@ -83,7 +83,12 @@ export function BanquetScreen() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {banquetSets.map((set, i) => (
               <Reveal key={set.name} delay={(i % 3) * 60} className="h-full">
-                <PackageCard name={set.name} price={set.price} featured={i === 0} />
+                <PackageCard
+                  name={dishName(set, lang)}
+                  orderName={set.name}
+                  price={set.price}
+                  featured={i === 0}
+                />
               </Reveal>
             ))}
           </div>

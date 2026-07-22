@@ -111,7 +111,7 @@ export function Header() {
       {open && (
         <div
           id="mobile-menu"
-          className="fixed inset-0 top-[72px] z-40 animate-fade-in bg-cream-50 lg:hidden"
+          className="fixed inset-x-0 bottom-0 top-[72px] z-40 animate-fade-in overflow-y-auto bg-cream-50 lg:hidden"
         >
           <nav aria-label="Мобильная навигация" className="container-page py-6">
             <ul className="flex flex-col divide-y divide-teal-900/10">

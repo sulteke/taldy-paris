@@ -9,6 +9,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { site } from "@/data/site";
 
 export type CartLine = {
   id: string;
@@ -21,7 +22,14 @@ export type CartLine = {
 type CartValue = {
   lines: CartLine[];
   count: number;
+  /** Sum of the dishes, before service charge. */
+  subtotal: number;
+  /** Service-charge amount (subtotal × serviceChargePercent). */
+  service: number;
+  /** Final amount the guest pays: subtotal + service charge. */
   total: number;
+  /** The service-charge percent applied (from site data). */
+  servicePercent: number;
   add: (item: { id: string; name: string; price: string }) => void;
   inc: (id: string) => void;
   dec: (id: string) => void;
@@ -103,17 +111,31 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const clear = useCallback(() => setLines([]), []);
 
-  const { count, total } = useMemo(() => {
-    return lines.reduce(
+  const { count, subtotal, service, total } = useMemo(() => {
+    const { count, subtotal } = lines.reduce(
       (acc, l) => ({
         count: acc.count + l.qty,
-        total: acc.total + l.unit * l.qty,
+        subtotal: acc.subtotal + l.unit * l.qty,
       }),
-      { count: 0, total: 0 }
+      { count: 0, subtotal: 0 }
     );
+    const service = Math.round((subtotal * site.serviceChargePercent) / 100);
+    return { count, subtotal, service, total: subtotal + service };
   }, [lines]);
 
-  const value: CartValue = { lines, count, total, add, inc, dec, remove, clear };
+  const value: CartValue = {
+    lines,
+    count,
+    subtotal,
+    service,
+    total,
+    servicePercent: site.serviceChargePercent,
+    add,
+    inc,
+    dec,
+    remove,
+    clear,
+  };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
